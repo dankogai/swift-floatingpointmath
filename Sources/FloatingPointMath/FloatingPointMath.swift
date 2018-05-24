@@ -4,49 +4,26 @@ import Glibc
 import Darwin
 #endif
 
-public protocol DoubleConvertible : BinaryFloatingPoint {
-    var asDouble:Double { get }
-}
-extension DoubleConvertible {
-    #if os(Linux)
-    public static func acos (_ x:Self)->Self { return Self(Glibc.acos(x.asDouble)) }
-    public static func asin (_ x:Self)->Self { return Self(Glibc.asin(x.asDouble)) }
-    public static func atan (_ x:Self)->Self { return Self(Glibc.atan(x.asDouble)) }
-    public static func acosh(_ x:Self)->Self { return Self(Glibc.acosh(x.asDouble)) }
-    public static func asinh(_ x:Self)->Self { return Self(Glibc.asinh(x.asDouble)) }
-    public static func atanh(_ x:Self)->Self { return Self(Glibc.atanh(x.asDouble)) }
-    public static func cos  (_ x:Self)->Self { return Self(Glibc.cos(x.asDouble)) }
-    public static func cosh (_ x:Self)->Self { return Self(Glibc.cosh(x.asDouble)) }
-    public static func exp  (_ x:Self)->Self { return Self(Glibc.exp(x.asDouble)) }
-    public static func log  (_ x:Self)->Self { return Self(Glibc.log(x.asDouble)) }
-    public static func sin  (_ x:Self)->Self { return Self(Glibc.sin(x.asDouble)) }
-    public static func sinh (_ x:Self)->Self { return Self(Glibc.sinh(x.asDouble)) }
-    public static func sqrt (_ x:Self)->Self { return Self(Glibc.sqrt(x.asDouble)) }
-    public static func atan2(_ y:Self, _ x:Self)->Self { return Self(Glibc.atan2(y.asDouble, x.asDouble)) }
-    public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Glibc.hypot(x.asDouble, y.asDouble)) }
-    public static func pow  (_ x:Self, _ y:Self)->Self { return Self(Glibc.pow(x.asDouble, y.asDouble)) }
-    #else
-    public static func acos (_ x:Self)->Self { return Self(Darwin.acos(x.asDouble)) }
-    public static func asin (_ x:Self)->Self { return Self(Darwin.asin(x.asDouble)) }
-    public static func atan (_ x:Self)->Self { return Self(Darwin.atan(x.asDouble)) }
-    public static func acosh(_ x:Self)->Self { return Self(Darwin.acosh(x.asDouble)) }
-    public static func asinh(_ x:Self)->Self { return Self(Darwin.asinh(x.asDouble)) }
-    public static func atanh(_ x:Self)->Self { return Self(Darwin.atanh(x.asDouble)) }
-    public static func cos  (_ x:Self)->Self { return Self(Darwin.cos(x.asDouble)) }
-    public static func cosh (_ x:Self)->Self { return Self(Darwin.cosh(x.asDouble)) }
-    public static func exp  (_ x:Self)->Self { return Self(Darwin.exp(x.asDouble)) }
-    public static func log  (_ x:Self)->Self { return Self(Darwin.log(x.asDouble)) }
-    public static func sin  (_ x:Self)->Self { return Self(Darwin.sin(x.asDouble)) }
-    public static func sinh (_ x:Self)->Self { return Self(Darwin.sinh(x.asDouble)) }
-    public static func sqrt (_ x:Self)->Self { return Self(Darwin.sqrt(x.asDouble)) }
-    public static func atan2(_ y:Self, _ x:Self)->Self { return Self(Darwin.atan2(y.asDouble, x.asDouble)) }
-    public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Darwin.hypot(x.asDouble, y.asDouble)) }
-    public static func pow  (_ x:Self, _ y:Self)->Self { return Self(Darwin.pow(x.asDouble, y.asDouble)) }
-    #endif
+public protocol FloatingPointMath {
+    static func acos (_:Self)->Self
+    static func asin (_:Self)->Self
+    static func atan (_:Self)->Self
+    static func acosh(_:Self)->Self
+    static func asinh(_:Self)->Self
+    static func atanh(_:Self)->Self
+    static func cos  (_:Self)->Self
+    static func cosh (_:Self)->Self
+    static func exp  (_:Self)->Self
+    static func log  (_:Self)->Self
+    static func sin  (_:Self)->Self
+    static func sinh (_:Self)->Self
+    static func sqrt (_:Self)->Self
+    static func atan2(_:Self, _:Self)->Self
+    static func hypot(_:Self, _:Self)->Self
+    static func pow  (_:Self, _:Self)->Self
 }
 
-extension Double : DoubleConvertible {
-    public var asDouble:Double { return self }
+extension Double : FloatingPointMath {
     #if os(Linux)
     public static func acos (_ x:Double)->Double { return Glibc.acos(x) }
     public static func asin (_ x:Double)->Double { return Glibc.asin(x) }
@@ -84,11 +61,40 @@ extension Double : DoubleConvertible {
     #endif
 }
 
-extension Float : DoubleConvertible {
-    public var asDouble:Double { return Double(self) }
+extension Float : FloatingPointMath {
+    #if os(Linux)
+    public static func acos (_ x:Float)->Float { return Glibc.acos(x) }
+    public static func asin (_ x:Float)->Float { return Glibc.asin(x) }
+    public static func atan (_ x:Float)->Float { return Glibc.atan(x) }
+    public static func acosh(_ x:Float)->Float { return Glibc.acosh(x) }
+    public static func asinh(_ x:Float)->Float { return Glibc.asinh(x) }
+    public static func atanh(_ x:Float)->Float { return Glibc.atanh(x) }
+    public static func cos  (_ x:Float)->Float { return Glibc.cos(x) }
+    public static func cosh (_ x:Float)->Float { return Glibc.cosh(x) }
+    public static func exp  (_ x:Float)->Float { return Glibc.exp(x) }
+    public static func log  (_ x:Float)->Float { return Glibc.log(x) }
+    public static func sin  (_ x:Float)->Float { return Glibc.sin(x) }
+    public static func sinh (_ x:Float)->Float { return Glibc.sinh(x) }
+    public static func sqrt (_ x:Float)->Float { return Glibc.sqrt(x) }
+    public static func atan2(_ y:Float, _ x:Float)->Float { return Glibc.atan2(y, x) }
+    public static func hypot(_ x:Float, _ y:Float)->Float { return Glibc.hypot(x, y) }
+    public static func pow  (_ x:Float, _ y:Float)->Float { return Glibc.pow(x, y) }
+    #else
+    public static func acos (_ x:Float)->Float { return Darwin.acos(x) }
+    public static func asin (_ x:Float)->Float { return Darwin.asin(x) }
+    public static func atan (_ x:Float)->Float { return Darwin.atan(x) }
+    public static func acosh(_ x:Float)->Float { return Darwin.acosh(x) }
+    public static func asinh(_ x:Float)->Float { return Darwin.asinh(x) }
+    public static func atanh(_ x:Float)->Float { return Darwin.atanh(x) }
+    public static func cos  (_ x:Float)->Float { return Darwin.cos(x) }
+    public static func cosh (_ x:Float)->Float { return Darwin.cosh(x) }
+    public static func exp  (_ x:Float)->Float { return Darwin.exp(x) }
+    public static func log  (_ x:Float)->Float { return Darwin.log(x) }
+    public static func sin  (_ x:Float)->Float { return Darwin.sin(x) }
+    public static func sinh (_ x:Float)->Float { return Darwin.sinh(x) }
+    public static func sqrt (_ x:Float)->Float { return Darwin.sqrt(x) }
+    public static func atan2(_ y:Float, _ x:Float)->Float { return Darwin.atan2(y, x) }
+    public static func hypot(_ x:Float, _ y:Float)->Float { return Darwin.hypot(x, y) }
+    public static func pow  (_ x:Float, _ y:Float)->Float { return Darwin.pow(x, y) }
+    #endif
 }
-
-extension Float80 : DoubleConvertible {
-    public var asDouble:Double { return Double(self) }
-}
-
