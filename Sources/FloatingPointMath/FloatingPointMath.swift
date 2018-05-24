@@ -1,34 +1,13 @@
-public protocol DoubleConvertible {
-    init(_:Double)
-    var asDouble:Double { get }
-}
-
-extension FloatingPoint {
-    public static func acos (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func asin (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func atan (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func acosh(_ x:Self)->Self { fatalError("unimplemented") }
-    public static func asinh(_ x:Self)->Self { fatalError("unimplemented") }
-    public static func atanh(_ x:Self)->Self { fatalError("unimplemented") }
-    public static func cos  (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func cosh (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func exp  (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func log  (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func sin  (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func sinh (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func sqrt (_ x:Self)->Self { fatalError("unimplemented") }
-    public static func atan2(_ y:Self, _ x:Self)->Self { fatalError("unimplemented") }
-    public static func hypot(_ x:Self, _ y:Self)->Self { fatalError("unimplemented") }
-    public static func pow  (_ x:Self, _ y:Self)->Self { fatalError("unimplemented") }
-}
-
 #if os(Linux)
 import Glibc
 #else
 import Darwin
 #endif
 
-extension FloatingPoint where Self:DoubleConvertible {
+protocol DoubleConvertible : BinaryFloatingPoint {
+    var asDouble:Double { get }
+}
+extension DoubleConvertible {
     #if os(Linux)
     public static func acos (_ x:Self)->Self { return Self(Glibc.acos(x.asDouble)) }
     public static func asin (_ x:Self)->Self { return Self(Glibc.asin(x.asDouble)) }
