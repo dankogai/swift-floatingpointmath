@@ -4,7 +4,7 @@ import Glibc
 import Darwin
 #endif
 
-protocol DoubleConvertible : BinaryFloatingPoint {
+public protocol DoubleConvertible : BinaryFloatingPoint {
     var asDouble:Double { get }
 }
 extension DoubleConvertible {
