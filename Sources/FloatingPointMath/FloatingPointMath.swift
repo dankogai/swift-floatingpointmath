@@ -11,6 +11,27 @@ import Darwin
 
 // Default implementations
 extension FloatingPointMath {
+    #if os(Linux)
+    public static func acos (_ x:Self)->Self { return Self(Glibc.acos (x.asDouble)) }
+    public static func acosh(_ x:Self)->Self { return Self(Glibc.acosh(x.asDouble)) }
+    public static func asin (_ x:Self)->Self { return Self(Glibc.asin (x.asDouble)) }
+    public static func asinh(_ x:Self)->Self { return Self(Glibc.asinh(x.asDouble)) }
+    public static func atan (_ x:Self)->Self { return Self(Glibc.atan (x.asDouble)) }
+    public static func atanh(_ x:Self)->Self { return Self(Glibc.atanh(x.asDouble)) }
+    public static func cos  (_ x:Self)->Self { return Self(Glibc.cos  (x.asDouble)) }
+    public static func cosh (_ x:Self)->Self { return Self(Glibc.cosh (x.asDouble)) }
+    public static func exp  (_ x:Self)->Self { return Self(Glibc.exp  (x.asDouble)) }
+    public static func log  (_ x:Self)->Self { return Self(Glibc.log  (x.asDouble)) }
+    public static func log10(_ x:Self)->Self { return Self(Glibc.log10(x.asDouble)) }
+    public static func sin  (_ x:Self)->Self { return Self(Glibc.sin  (x.asDouble)) }
+    public static func sinh (_ x:Self)->Self { return Self(Glibc.sinh (x.asDouble)) }
+    public static func sqrt (_ x:Self)->Self { return Self(Glibc.sqrt (x.asDouble)) }
+    public static func tan  (_ x:Self)->Self { return Self(Glibc.tan  (x.asDouble)) }
+    public static func tanh (_ x:Self)->Self { return Self(Glibc.tanh (x.asDouble)) }
+    public static func atan2(_ x:Self, _ y:Self)->Self { return Self(Glibc.atan2(x.asDouble, y.asDouble)) }
+    public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Glibc.hypot(x.asDouble, y.asDouble)) }
+    public static func pow(_ x:Self, _ y:Self)->Self   { return Self(Glibc.pow  (x.asDouble, y.asDouble)) }
+    #else
     public static func acos (_ x:Self)->Self { return Self(Darwin.acos (x.asDouble)) }
     public static func acosh(_ x:Self)->Self { return Self(Darwin.acosh(x.asDouble)) }
     public static func asin (_ x:Self)->Self { return Self(Darwin.asin (x.asDouble)) }
@@ -30,6 +51,7 @@ extension FloatingPointMath {
     public static func atan2(_ x:Self, _ y:Self)->Self { return Self(Darwin.atan2(x.asDouble, y.asDouble)) }
     public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Darwin.hypot(x.asDouble, y.asDouble)) }
     public static func pow(_ x:Self, _ y:Self)->Self   { return Self(Darwin.pow  (x.asDouble, y.asDouble)) }
+    #endif
 }
 
 extension Double : FloatingPointMath {
