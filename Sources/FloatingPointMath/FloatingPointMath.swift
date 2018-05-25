@@ -1,32 +1,39 @@
+public protocol FloatingPointMath {
+    init (_:Double)             // BinaryFloatingPoint already has one
+    var asDouble:Double { get } // you have to add it yourself
+}
+
 #if os(Linux)
 import Glibc
 #else
 import Darwin
 #endif
 
-public protocol FloatingPointMath {
-    static func acos (_:Self)->Self
-    static func asin (_:Self)->Self
-    static func atan (_:Self)->Self
-    static func acosh(_:Self)->Self
-    static func asinh(_:Self)->Self
-    static func atanh(_:Self)->Self
-    static func cos  (_:Self)->Self
-    static func cosh (_:Self)->Self
-    static func exp  (_:Self)->Self
-    static func log  (_:Self)->Self
-    static func log10(_:Self)->Self
-    static func sin  (_:Self)->Self
-    static func sinh (_:Self)->Self
-    static func sqrt (_:Self)->Self
-    static func tan  (_:Self)->Self
-    static func tanh (_:Self)->Self
-    static func atan2(_:Self, _:Self)->Self
-    static func hypot(_:Self, _:Self)->Self
-    static func pow  (_:Self, _:Self)->Self
+// Default implementations
+extension FloatingPointMath {
+    public static func acos (_ x:Self)->Self { return Self(Darwin.acos (x.asDouble)) }
+    public static func acosh(_ x:Self)->Self { return Self(Darwin.acosh(x.asDouble)) }
+    public static func asin (_ x:Self)->Self { return Self(Darwin.asin (x.asDouble)) }
+    public static func asinh(_ x:Self)->Self { return Self(Darwin.asinh(x.asDouble)) }
+    public static func atan (_ x:Self)->Self { return Self(Darwin.atan (x.asDouble)) }
+    public static func atanh(_ x:Self)->Self { return Self(Darwin.atanh(x.asDouble)) }
+    public static func cos  (_ x:Self)->Self { return Self(Darwin.cos  (x.asDouble)) }
+    public static func cosh (_ x:Self)->Self { return Self(Darwin.cosh (x.asDouble)) }
+    public static func exp  (_ x:Self)->Self { return Self(Darwin.exp  (x.asDouble)) }
+    public static func log  (_ x:Self)->Self { return Self(Darwin.log  (x.asDouble)) }
+    public static func log10(_ x:Self)->Self { return Self(Darwin.log10(x.asDouble)) }
+    public static func sin  (_ x:Self)->Self { return Self(Darwin.sin  (x.asDouble)) }
+    public static func sinh (_ x:Self)->Self { return Self(Darwin.sinh (x.asDouble)) }
+    public static func sqrt (_ x:Self)->Self { return Self(Darwin.sqrt (x.asDouble)) }
+    public static func tan  (_ x:Self)->Self { return Self(Darwin.tan  (x.asDouble)) }
+    public static func tanh (_ x:Self)->Self { return Self(Darwin.tanh (x.asDouble)) }
+    public static func atan2(_ x:Self, _ y:Self)->Self { return Self(Darwin.atan2(x.asDouble, y.asDouble)) }
+    public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Darwin.hypot(x.asDouble, y.asDouble)) }
+    public static func pow(_ x:Self, _ y:Self)->Self   { return Self(Darwin.pow  (x.asDouble, y.asDouble)) }
 }
 
 extension Double : FloatingPointMath {
+    public var asDouble:Double { return self }
     #if os(Linux)
     public static func acos (_ x:Double)->Double { return Glibc.acos(x) }
     public static func asin (_ x:Double)->Double { return Glibc.asin(x) }
@@ -71,45 +78,5 @@ extension Double : FloatingPointMath {
 }
 
 extension Float : FloatingPointMath {
-    #if os(Linux)
-    public static func acos (_ x:Float)->Float { return Glibc.acosf(x) }
-    public static func asin (_ x:Float)->Float { return Glibc.asinf(x) }
-    public static func atan (_ x:Float)->Float { return Glibc.atanf(x) }
-    public static func acosh(_ x:Float)->Float { return Glibc.acoshf(x) }
-    public static func asinh(_ x:Float)->Float { return Glibc.asinhf(x) }
-    public static func atanh(_ x:Float)->Float { return Glibc.atanhf(x) }
-    public static func cos  (_ x:Float)->Float { return Glibc.cosf(x) }
-    public static func cosh (_ x:Float)->Float { return Glibc.coshf(x) }
-    public static func exp  (_ x:Float)->Float { return Glibc.expf(x) }
-    public static func log  (_ x:Float)->Float { return Glibc.logf(x) }
-    public static func log10(_ x:Float)->Float { return Glibc.log10f(x) }
-    public static func sin  (_ x:Float)->Float { return Glibc.sinf(x) }
-    public static func sinh (_ x:Float)->Float { return Glibc.sinhf(x) }
-    public static func sqrt (_ x:Float)->Float { return Glibc.sqrtf(x) }
-    public static func tan  (_ x:Float)->Float { return Glibc.tanf(x) }
-    public static func tanh (_ x:Float)->Float { return Glibc.tanhf(x) }
-    public static func atan2(_ y:Float, _ x:Float)->Float { return Glibc.atan2f(y, x) }
-    public static func hypot(_ x:Float, _ y:Float)->Float { return Glibc.hypotf(x, y) }
-    public static func pow  (_ x:Float, _ y:Float)->Float { return Glibc.powf(x, y) }
-    #else
-    public static func acos (_ x:Float)->Float { return Darwin.acosf(x) }
-    public static func asin (_ x:Float)->Float { return Darwin.asinf(x) }
-    public static func atan (_ x:Float)->Float { return Darwin.atanf(x) }
-    public static func acosh(_ x:Float)->Float { return Darwin.acoshf(x) }
-    public static func asinh(_ x:Float)->Float { return Darwin.asinhf(x) }
-    public static func atanh(_ x:Float)->Float { return Darwin.atanhf(x) }
-    public static func cos  (_ x:Float)->Float { return Darwin.cosf(x) }
-    public static func cosh (_ x:Float)->Float { return Darwin.coshf(x) }
-    public static func exp  (_ x:Float)->Float { return Darwin.expf(x) }
-    public static func log  (_ x:Float)->Float { return Darwin.logf(x) }
-    public static func log10(_ x:Float)->Float { return Darwin.log10f(x) }
-    public static func sin  (_ x:Float)->Float { return Darwin.sinf(x) }
-    public static func sinh (_ x:Float)->Float { return Darwin.sinhf(x) }
-    public static func sqrt (_ x:Float)->Float { return Darwin.sqrtf(x) }
-    public static func tan  (_ x:Float)->Float { return Darwin.tanf(x) }
-    public static func tanh (_ x:Float)->Float { return Darwin.tanhf(x) }
-    public static func atan2(_ y:Float, _ x:Float)->Float { return Darwin.atan2f(y, x) }
-    public static func hypot(_ x:Float, _ y:Float)->Float { return Darwin.hypotf(x, y) }
-    public static func pow  (_ x:Float, _ y:Float)->Float { return Darwin.powf(x, y) }
-    #endif
+    public var asDouble:Double { return Double(self) }
 }

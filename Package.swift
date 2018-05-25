@@ -22,6 +22,9 @@ let package = Package(
         .target(
             name: "FloatingPointMath",
             dependencies: []),
+        .target(
+            name: "FloatingPointMathRun",
+            dependencies: ["FloatingPointMath"]),
         .testTarget(
             name: "FloatingPointMathTests",
             dependencies: ["FloatingPointMath"]),
