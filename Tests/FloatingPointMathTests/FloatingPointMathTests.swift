@@ -12,9 +12,9 @@ final class FloatingPointMathTests: XCTestCase {
     func testPow264()  { XCTAssertEqual(F64.pow(F64(4), -F64(0.5)), F64(0.5)) }
 
     static var allTests = [
-        // ("testHypot32", testHypot32), // Float.pi disagrees w/ atan2f(0,-1) on linux
+        ("testHypot32", testHypot32),
         ("testHypot64", testHypot64),
-        ("testAtan232", testAtan232),
+        // ("testAtan232", testAtan232), // Float.pi disagrees w/ atan2f(0,-1) on linux
         ("testAtan264", testAtan264),
         ("testPow232",  testPow232),
         ("testPow264",  testPow264),
