@@ -33,7 +33,7 @@ extension FloatingPointMath {
     public static func sqrt (_ x:Self)->Self { return Self(Glibc.sqrt (x.asDouble)) }
     public static func tan  (_ x:Self)->Self { return Self(Glibc.tan  (x.asDouble)) }
     public static func tanh (_ x:Self)->Self { return Self(Glibc.tanh (x.asDouble)) }
-    public static func atans(_ x:Self, _ y:Self)->Self { return Self(Glibc.atan2(x.asDouble, y.asDouble)) }
+    public static func atan2(_ x:Self, _ y:Self)->Self { return Self(Glibc.atan2(x.asDouble, y.asDouble)) }
     public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Glibc.hypot(x.asDouble, y.asDouble)) }
     public static func pow(_ x:Self, _ y:Self)->Self   { return Self(Glibc.pow  (x.asDouble, y.asDouble)) }
     public static func erf   (_ x:Self)->Self { return Self(Glibc.erf  (x.asDouble)) }
