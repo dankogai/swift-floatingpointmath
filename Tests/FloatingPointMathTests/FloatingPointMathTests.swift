@@ -2,22 +2,54 @@ import XCTest
 @testable import FloatingPointMath
 
 final class FloatingPointMathTests: XCTestCase {
-    private typealias F32 = Float32
-    private typealias F64 = Float64
-    private let F32pi = F32(F64.pi)
-    func testAtan232() { XCTAssertEqual(F32.atan2(F32(0), -F32(1)), F32pi) }
-    func testAtan264() { XCTAssertEqual(F64.atan2(F64(0), -F64(1)), F64.pi) }
-    func testHypot32() { XCTAssertEqual(F32.hypot(F32(3), F32(4)), F32(5)) }
-    func testHypot64() { XCTAssertEqual(F64.hypot(F64(3), F64(4)), F64(5)) }
-    func testPow232()  { XCTAssertEqual(F32.pow(F32(4), -F32(0.5)), F32(0.5)) }
-    func testPow264()  { XCTAssertEqual(F64.pow(F64(4), -F64(0.5)), F64(0.5)) }
-
+    func testDouble() {
+        typealias D = Double
+        let pi_4 = D.pi/4
+        XCTAssertEqual(D.acos (+1.0), 0.0)
+        XCTAssertEqual(D.acosh(+1.0), 0.0)
+        XCTAssertEqual(D.asin (+0.0), 0.0)
+        XCTAssertEqual(D.asinh(+0.0), 0.0)
+        XCTAssertEqual(D.atan (+0.0), 0.0)
+        XCTAssertEqual(D.atanh(+0.0), 0.0)
+        XCTAssertEqual(D.cos  (+0.0), 1.0)
+        XCTAssertEqual(D.cosh (+0.0), 1.0)
+        XCTAssertEqual(D.exp  (+0.0), 1.0)
+        XCTAssertEqual(D.log  (+1.0), 0.0)
+        XCTAssertEqual(D.log10(+100), 2.0)
+        XCTAssertEqual(D.sin  (+0.0), 0.0)
+        XCTAssertEqual(D.sinh (+0.0), 0.0)
+        XCTAssertEqual(D.sqrt (+0.0), 0.0)
+        XCTAssertEqual(D.tan  (+0.0), 0.0)
+        XCTAssertEqual(D.tanh (+0.0), 0.0)
+        XCTAssertEqual(D.atan2(+1.0, +1.0), pi_4)
+        XCTAssertEqual(D.hypot(+3.0, -4.0), 5.0 )
+        XCTAssertEqual(D.pow  (-2.0, -2.0), 0.25)
+    }
+    func testFloat() {
+        typealias F = Float
+        let pi_4 = F(Double.pi/4)
+        XCTAssertEqual(F.acos (+1.0), 0.0)
+        XCTAssertEqual(F.acosh(+1.0), 0.0)
+        XCTAssertEqual(F.asin (+0.0), 0.0)
+        XCTAssertEqual(F.asinh(+0.0), 0.0)
+        XCTAssertEqual(F.atan (+0.0), 0.0)
+        XCTAssertEqual(F.atanh(+0.0), 0.0)
+        XCTAssertEqual(F.cos  (+0.0), 1.0)
+        XCTAssertEqual(F.cosh (+0.0), 1.0)
+        XCTAssertEqual(F.exp  (+0.0), 1.0)
+        XCTAssertEqual(F.log  (+1.0), 0.0)
+        XCTAssertEqual(F.log10(+100), 2.0)
+        XCTAssertEqual(F.sin  (+0.0), 0.0)
+        XCTAssertEqual(F.sinh (+0.0), 0.0)
+        XCTAssertEqual(F.sqrt (+0.0), 0.0)
+        XCTAssertEqual(F.tan  (+0.0), 0.0)
+        XCTAssertEqual(F.tanh (+0.0), 0.0)
+        XCTAssertEqual(F.atan2(+1.0, +1.0), pi_4)
+        XCTAssertEqual(F.hypot(+3.0, -4.0), 5.0 )
+        XCTAssertEqual(F.pow  (-2.0, -2.0), 0.25)
+    }
     static var allTests = [
-        ("testHypot32", testHypot32),
-        ("testHypot64", testHypot64),
-        ("testAtan232", testAtan232), // Float.pi disagrees w/ atan2f(0,-1) on linux
-        ("testAtan264", testAtan264),
-        ("testPow232",  testPow232),
-        ("testPow264",  testPow264),
+        ("testDouble", testDouble),
+
     ]
 }

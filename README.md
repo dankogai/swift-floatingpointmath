@@ -36,9 +36,9 @@ static func sinh (_ x:Self)->Self
 static func sqrt (_ x:Self)->Self
 static func tan  (_ x:Self)->Self
 static func tanh (_ x:Self)->Self
-static func atan2(_ x:Self)->Self
-static func hypot(_ x:Self)->Self
-static func pow  (_ x:Self)->Self
+static func atan2(_ y:Self, _ x:Self)->Self
+static func hypot(_ x:Self, _ y:Self)->Self
+static func pow  (_ x:Self, _ y:Self)->Self
 ```
 
 In short, conforming types are guaranteed to have math functions as (static|class) methods.  For convenience, `Double` and `Float` are made `FloatingPointMath` when you `import`.

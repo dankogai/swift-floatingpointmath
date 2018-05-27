@@ -54,6 +54,7 @@ extension FloatingPointMath {
     #endif
 }
 
+// Overrides default
 extension Double : FloatingPointMath {
     public var asDouble:Double { return self }
     #if os(Linux)
@@ -102,3 +103,4 @@ extension Double : FloatingPointMath {
 extension Float : FloatingPointMath {
     public var asDouble:Double { return Double(self) }
 }
+
