@@ -26,11 +26,16 @@ static func asin (_ x:Self)->Self
 static func asinh(_ x:Self)->Self
 static func atan (_ x:Self)->Self
 static func atanh(_ x:Self)->Self
+static func cbrt (_ x:Self)->Self
 static func cos  (_ x:Self)->Self
 static func cosh (_ x:Self)->Self
 static func exp  (_ x:Self)->Self
+static func exp2 (_ x:Self)->Self
+static func expm1(_ x:Self)->Self
 static func log  (_ x:Self)->Self
+static func log2 (_ x:Self)->Self
 static func log10(_ x:Self)->Self
+static func log1p(_ x:Self)->Self
 static func sin  (_ x:Self)->Self
 static func sinh (_ x:Self)->Self
 static func sqrt (_ x:Self)->Self
@@ -39,6 +44,10 @@ static func tanh (_ x:Self)->Self
 static func atan2(_ y:Self, _ x:Self)->Self
 static func hypot(_ x:Self, _ y:Self)->Self
 static func pow  (_ x:Self, _ y:Self)->Self
+static func erf  (_ x:Self)->Self
+static func erfc (_ x:Self)->Self
+static func lgamma(_ x:Self)->Self
+static func tgamma(_ x:Self)->Self
 ```
 
 In short, conforming types are guaranteed to have math functions as (static|class) methods.  For convenience, `Double` and `Float` are made `FloatingPointMath` when you `import`.
@@ -56,7 +65,19 @@ Unlike `Foundation` (or `Glibc` or `Darwin`), this module:
   Double.atan2(0.0, -1.0) == Double.pi // explicitly under `Double`.
   ```
 
-## Default implementation of functions
+## Conforming to `FloatingPointMath`
+
+### Quick and Dirty Way
+
+If the type already conform to `BinaryFloatingPoint`, all you have to do is add `.asDouble` as follows:
+
+```swift
+extension CGFloat : FloatingPointMath {
+    public var asDouble:Double { return Double(self) }
+}
+```
+
+### Hard but Right Way
 
 Default implementations just convert to Double, do the calculation and convert the result back like the following.
 
