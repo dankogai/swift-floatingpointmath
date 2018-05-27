@@ -68,6 +68,6 @@ final class FloatingPointMathTests: XCTestCase {
     }
     static var allTests = [
         ("testDouble", testDouble),
-
+        ("testFloat", testFloat),
     ]
 }
