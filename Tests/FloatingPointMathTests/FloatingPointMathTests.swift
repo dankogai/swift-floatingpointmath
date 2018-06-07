@@ -29,10 +29,6 @@ final class FloatingPointMathTests: XCTestCase {
         XCTAssertEqual(T.atan2(+1.0, +1.0), pi_4)
         XCTAssertEqual(T.hypot(+3.0, -4.0), 5.0 )
         XCTAssertEqual(T.pow  (-2.0, -2.0), 0.25)
-        XCTAssertEqual(T.erf  (+0.0), 0.0)
-        XCTAssertEqual(T.erfc (+0.0), 1.0)
-        XCTAssertEqual(T.lgamma(+1.0), 0.0)
-        XCTAssertEqual(T.tgamma(+1.0), 1.0)
     }
 
     func testDouble() { runBasic(forType: Double.self) }

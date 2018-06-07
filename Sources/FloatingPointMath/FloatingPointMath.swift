@@ -36,10 +36,6 @@ extension FloatingPointMath {
     public static func atan2(_ x:Self, _ y:Self)->Self { return Self(Glibc.atan2(x.asDouble, y.asDouble)) }
     public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Glibc.hypot(x.asDouble, y.asDouble)) }
     public static func pow(_ x:Self, _ y:Self)->Self   { return Self(Glibc.pow  (x.asDouble, y.asDouble)) }
-    public static func erf   (_ x:Self)->Self { return Self(Glibc.erf  (x.asDouble)) }
-    public static func erfc  (_ x:Self)->Self { return Self(Glibc.erfc (x.asDouble)) }
-    public static func lgamma(_ x:Self)->Self { return Self(Glibc.lgamma(x.asDouble)) }
-    public static func tgamma(_ x:Self)->Self { return Self(Glibc.tgamma(x.asDouble)) }
     #else
     public static func acos (_ x:Self)->Self { return Self(Darwin.acos (x.asDouble)) }
     public static func acosh(_ x:Self)->Self { return Self(Darwin.acosh(x.asDouble)) }
@@ -65,10 +61,6 @@ extension FloatingPointMath {
     public static func atan2(_ x:Self, _ y:Self)->Self { return Self(Darwin.atan2(x.asDouble, y.asDouble)) }
     public static func hypot(_ x:Self, _ y:Self)->Self { return Self(Darwin.hypot(x.asDouble, y.asDouble)) }
     public static func pow(_ x:Self, _ y:Self)->Self   { return Self(Darwin.pow  (x.asDouble, y.asDouble)) }
-    public static func erf   (_ x:Self)->Self { return Self(Darwin.erf  (x.asDouble)) }
-    public static func erfc  (_ x:Self)->Self { return Self(Darwin.erfc (x.asDouble)) }
-    public static func lgamma(_ x:Self)->Self { return Self(Darwin.lgamma(x.asDouble)) }
-    public static func tgamma(_ x:Self)->Self { return Self(Darwin.tgamma(x.asDouble)) }
     #endif
 }
 
@@ -100,10 +92,6 @@ extension Double : FloatingPointMath {
     public static func atan2(_ y:Double, _ x:Double)->Double { return Glibc.atan2(y, x) }
     public static func hypot(_ x:Double, _ y:Double)->Double { return Glibc.hypot(x, y) }
     public static func pow  (_ x:Double, _ y:Double)->Double { return Glibc.pow(x, y) }
-    public static func erf  (_ x:Double)->Double { return Glibc.erf(x) }
-    public static func erfc (_ x:Double)->Double { return Glibc.erfc(x) }
-    public static func lgamma(_ x:Double)->Double { return Glibc.lgamma(x) }
-    public static func tgamma(_ x:Double)->Double { return Glibc.tgamma(x) }
     #else
     public static func acos (_ x:Double)->Double { return Darwin.acos(x) }
     public static func asin (_ x:Double)->Double { return Darwin.asin(x) }
@@ -129,10 +117,6 @@ extension Double : FloatingPointMath {
     public static func atan2(_ y:Double, _ x:Double)->Double { return Darwin.atan2(y, x) }
     public static func hypot(_ x:Double, _ y:Double)->Double { return Darwin.hypot(x, y) }
     public static func pow  (_ x:Double, _ y:Double)->Double { return Darwin.pow(x, y) }
-    public static func erf  (_ x:Double)->Double { return Darwin.erf(x) }
-    public static func erfc (_ x:Double)->Double { return Darwin.erfc(x) }
-    public static func lgamma(_ x:Double)->Double { return Darwin.lgamma(x) }
-    public static func tgamma(_ x:Double)->Double { return Darwin.tgamma(x) }
     #endif
 }
 
