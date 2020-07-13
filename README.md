@@ -2,6 +2,13 @@
 [![MIT LiCENSE](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![build status](https://secure.travis-ci.org/dankogai/swift-floatingpointmath.png)](http://travis-ci.org/dankogai/swift-floatingpointmath)
 
+# OBSOLETED by Swift Numerics
+
+Now that we have [apple/swift-numerics] [officially], you should switch to `ElementaryFunctions` protocol of `RealModule` of `Numerics`.
+
+[apple/swift-numerics]: https://github.com/apple/swift-numerics
+[officially]: https://swift.org/blog/numerics/
+
 # swift-floatingpointmath
 Protocol-Oriented Math Functions for Swift
 
